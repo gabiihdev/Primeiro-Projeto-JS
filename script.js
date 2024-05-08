@@ -1,3 +1,6 @@
+let divHistorico = document.getElementById("div-historico")
+divHistorico.style.display ="none"
+
 function calcularIdade(oAnoNascimento){
     const hoje = new Date()
     const anoAtual = hoje.getFullYear()
@@ -20,7 +23,16 @@ function calcularValorAdicional(aIdade){
     return adicional
 }
 
+function calcularSalarioLiquido(aIdade,oSalarioBase, aGratificacao, oBonus, oDesconto){
+    let adicional = calcularValorAdicional(aIdade)
+
+    let salarioLiquido = oSalarioBase + aGratificacao + oBonus - oDesconto + adicional
+
+    return salarioLiquido;
+}
+
 function imprimir(){
+
     //input
     const anoNascimento = parseInt(document.getElementById("anoNascimento").value)
     const nome = document.getElementById("nome").value
@@ -32,11 +44,19 @@ function imprimir(){
     //processamento
     const idade = calcularIdade(anoNascimento)
 
-    let adicional = calcularValorAdicional(idade)
-
-    let salarioLiquido = salarioBase + gratificacao + bonus - desconto + adicional
+    let salarioLiquido = calcularSalarioLiquido(idade, salarioBase, gratificacao, bonus, desconto)
 
     //output
     let mensagem = "Sou " + nome + ", tenho " + idade + " anos e ganho R$" + salarioLiquido
-    alert(mensagem)
+
+    criarItemHistorico(mensagem)
+
+    divHistorico.style.display ="block"
+}
+
+function criarItemHistorico(aMensagem){
+    let historico = document.getElementById("ul-historico")
+    let listItem = document.createElement("li")
+    listItem.textContent = aMensagem
+    historico.appendChild(listItem)
 }
