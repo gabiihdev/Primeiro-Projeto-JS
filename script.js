@@ -1,29 +1,28 @@
 //constantes
 const SALARIO_ATE_20 = 1000
 const SALARIO_ACIMA_20 = 2000
+const IDADE_LIMITE = 20
 
 //input
-anoNascimento = parseInt(prompt("Informe o seu ano de nascimento:"))
-nome = prompt("Informe o seu nome:")
-salarioBase = parseFloat(prompt("Informe o salário base:"))
-gratificacao = parseFloat(prompt("Informe a gratificação:"))
-bonus = parseFloat(prompt("Informe o bônus:"))
-desconto = parseFloat(prompt("Informe o desconto:"))
-
-salarioLiquido = 0
-adicional = 0
+const anoNascimento = parseInt(prompt("Informe o seu ano de nascimento:"))
+const nome = prompt("Informe o seu nome:")
+const salarioBase = parseFloat(prompt("Informe o salário base:"))
+const gratificacao = parseFloat(prompt("Informe a gratificação:"))
+const bonus = parseFloat(prompt("Informe o bônus:"))
+const desconto = parseFloat(prompt("Informe o desconto:"))
 
 //processamento
-hoje = new Date()
-anoAtual = hoje.getFullYear()
-idade = anoAtual - anoNascimento
+const hoje = new Date()
+const anoAtual = hoje.getFullYear()
+const idade = anoAtual - anoNascimento
 
-//PRÓXIMA AULA: IF
-//Até 20 anos (inclusive): 1000   SALARIO_ATE_20
-//Acima de 20 anos: 2000          SALARIO_ACIMA_20 
+let adicional = SALARIO_ACIMA_20
+if(idade <= IDADE_LIMITE){
+    adicional = SALARIO_ATE_20
+}
 
-salarioLiquido = salarioBase + gratificacao + bonus - desconto + adicional
+let salarioLiquido = salarioBase + gratificacao + bonus - desconto + adicional
 
 //output
-mensagem = "Sou " + nome + ", tenho " + idade + " anos e ganho R$" + salarioLiquido
+let mensagem = "Sou " + nome + ", tenho " + idade + " anos e ganho R$" + salarioLiquido
 alert(mensagem)
