@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-  <title>Bootstrap Example</title>
+  <title>JS-I</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -15,12 +15,12 @@
 
     <div class="mb-3 mt-3">
       <label>Nome:</label>
-      <input type="text" class="form-control" id="nome">
+      <input type="text" class="form-control" value="Gabriela" id="nome">
     </div>
 
     <div class="mb-3">
       <label>Ano de nascimento:</label>
-      <input type="text" class="form-control" id="anoNascimento">
+      <input type="text" class="form-control" value="2006" id="anoNascimento">
     </div>
 
     <div class="mb-3">
@@ -28,23 +28,25 @@
 
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Digite o salário base" id="salarioBase">
+          <input type="text" class="form-control" placeholder="Digite o salário base" value="1000" id="salarioBase">
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Digite a gratificação" id="gratificacao">
+          <input type="text" class="form-control" placeholder="Digite a gratificação" value="500" id="gratificacao">
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Digite o bônus" id="bonus">
+          <input type="text" class="form-control" placeholder="Digite o bônus" value="300" id="bonus">
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Digite o desconto" id="desconto">
+          <input type="text" class="form-control" placeholder="Digite o desconto" value="200" id="desconto">
         </div>
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Calcular</button>
+    <button type="button" class="btn btn-primary" onclick="imprimir()" >Calcular</button>
   </form>
 </div>
+
+    <script src="script.js"></script>
 
 </body>
 </html>

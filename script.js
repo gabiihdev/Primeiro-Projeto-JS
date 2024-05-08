@@ -1,28 +1,42 @@
-//constantes
-const SALARIO_ATE_20 = 1000
-const SALARIO_ACIMA_20 = 2000
-const IDADE_LIMITE = 20
+function calcularIdade(oAnoNascimento){
+    const hoje = new Date()
+    const anoAtual = hoje.getFullYear()
+    const idade = anoAtual - oAnoNascimento
 
-//input
-const anoNascimento = parseInt(prompt("Informe o seu ano de nascimento:"))
-const nome = prompt("Informe o seu nome:")
-const salarioBase = parseFloat(prompt("Informe o salário base:"))
-const gratificacao = parseFloat(prompt("Informe a gratificação:"))
-const bonus = parseFloat(prompt("Informe o bônus:"))
-const desconto = parseFloat(prompt("Informe o desconto:"))
-
-//processamento
-const hoje = new Date()
-const anoAtual = hoje.getFullYear()
-const idade = anoAtual - anoNascimento
-
-let adicional = SALARIO_ACIMA_20
-if(idade <= IDADE_LIMITE){
-    adicional = SALARIO_ATE_20
+    return idade
 }
 
-let salarioLiquido = salarioBase + gratificacao + bonus - desconto + adicional
+function calcularValorAdicional(aIdade){
+    //constantes
+    const SALARIO_ATE_20 = 1000
+    const SALARIO_ACIMA_20 = 2000
+    const IDADE_LIMITE = 20
 
-//output
-let mensagem = "Sou " + nome + ", tenho " + idade + " anos e ganho R$" + salarioLiquido
-alert(mensagem)
+    let adicional = SALARIO_ACIMA_20
+    if(aIdade <= IDADE_LIMITE){
+        adicional = SALARIO_ATE_20
+    }
+
+    return adicional
+}
+
+function imprimir(){
+    //input
+    const anoNascimento = parseInt(document.getElementById("anoNascimento").value)
+    const nome = document.getElementById("nome").value
+    const salarioBase = parseFloat(document.getElementById("salarioBase").value)
+    const gratificacao = parseFloat(document.getElementById("gratificacao").value)
+    const bonus = parseFloat(document.getElementById("bonus").value)
+    const desconto = parseFloat(document.getElementById("desconto").value)
+
+    //processamento
+    const idade = calcularIdade(anoNascimento)
+
+    let adicional = calcularValorAdicional(idade)
+
+    let salarioLiquido = salarioBase + gratificacao + bonus - desconto + adicional
+
+    //output
+    let mensagem = "Sou " + nome + ", tenho " + idade + " anos e ganho R$" + salarioLiquido
+    alert(mensagem)
+}
