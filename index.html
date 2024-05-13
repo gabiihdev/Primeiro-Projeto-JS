@@ -13,14 +13,36 @@
   <h2>Instituto Infnet</h2>
   <form>
 
-    <div class="mb-3 mt-3">
+    <div class="row">
+      <div class="col">
       <label>Nome:</label>
-      <input type="text" class="form-control" value="Gabriela" id="nome">
+      <input type="text" class="form-control" id="nome">
+    </div>
+
+    <div class="col">
+      <label>Tipo:</label>
+        <select class="form-select" id="tipo">
+          <option disabled>Escolha o tipo de funcionário</option>
+          <option selected value="3000">Desenvolvedor de Software</option>
+          <option value="5000">Engenheiro de Software</option>
+          <option value="4000">Analista de Sistemas</option>
+          <option value="10000">Arquiteto de Software</option>
+        </select>
+    </div>
+
+    <div class="col">
+      <label>Experiência:</label>
+        <select class="form-select" id="experiencia">
+          <option disabled>Escolha a experiência do funcionário</option>
+          <option selected value="1">Júnior</option>
+          <option value="1.3">Pleno</option>
+          <option value="1.4">Sênior</option>
+        </select>
     </div>
 
     <div class="mb-3">
       <label>Ano de nascimento:</label>
-      <input type="text" class="form-control" value="2006" id="anoNascimento">
+      <input type="text" class="form-control" id="anoNascimento">
     </div>
 
     <div class="mb-3">
@@ -28,16 +50,16 @@
 
       <div class="row">
         <div class="col">
-          <input type="text" class="form-control" placeholder="Digite o salário base" value="1000" id="salarioBase">
+          <input type="text" class="form-control" placeholder="Digite o salário base" id="salarioBase">
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Digite a gratificação" value="500" id="gratificacao">
+          <input type="text" class="form-control" placeholder="Digite a gratificação" id="gratificacao">
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Digite o bônus" value="300" id="bonus">
+          <input type="text" class="form-control" placeholder="Digite o bônus" id="bonus">
         </div>
         <div class="col">
-          <input type="text" class="form-control" placeholder="Digite o desconto" value="200" id="desconto">
+          <input type="text" class="form-control" placeholder="Digite o desconto" id="desconto">
         </div>
       </div>
     </div>

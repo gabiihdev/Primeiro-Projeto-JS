@@ -23,10 +23,10 @@ function calcularValorAdicional(aIdade){
     return adicional
 }
 
-function calcularSalarioLiquido(aIdade,oSalarioBase, aGratificacao, oBonus, oDesconto){
+function calcularSalarioLiquido(aIdade,oSalarioBase, aGratificacao, oBonus, oDesconto, oValorTipo, oValorExperiencia){
     let adicional = calcularValorAdicional(aIdade)
 
-    let salarioLiquido = oSalarioBase + aGratificacao + oBonus - oDesconto + adicional
+    let salarioLiquido = ((oSalarioBase + aGratificacao + oBonus + adicional + oValorTipo) * oValorExperiencia) - oDesconto
 
     return salarioLiquido;
 }
@@ -43,11 +43,20 @@ function imprimir(){
 
     //processamento
     const idade = calcularIdade(anoNascimento)
+    let salarioLiquido = calcularSalarioLiquido(idade, salarioBase, gratificacao, bonus, desconto, valorTipo, valorExperiencia)
 
-    let salarioLiquido = calcularSalarioLiquido(idade, salarioBase, gratificacao, bonus, desconto)
+    const MINIMO_SALARIO_RICO = 50000
+
+    // E - && - TODAS AS SITUAÇÕES DEVEM SER VERDADEIRAS PARA ACONTECER
+    // OU - || - APENAS UMA SITUAÇÃO PRECISA SER VERDADEIRA
+  
+    let status = "pobre"
+    if (salarioLiquido > MINIMO_SALARIO_RICO){
+      status = "rico"
+    }
 
     //output
-    let mensagem = "Sou " + nome + ", tenho " + idade + " anos e ganho R$" + salarioLiquido
+    let mensagem = "Sou " + nome + ", tenho " + idade + " anos, ganho R$" + salarioLiquido + " e sou " + status + "."
 
     criarItemHistorico(mensagem)
 
