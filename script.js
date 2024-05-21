@@ -1,5 +1,5 @@
-let divHistorico = document.getElementById("div-historico")
-divHistorico.style.display ="none"
+let divHistorico = document.getElementById("div-historico");
+divHistorico.style.display ="none";
 
 function calcularValorAdicional(aIdade){
     const SALARIO_ATE_20 = 1000
@@ -9,10 +9,14 @@ function calcularValorAdicional(aIdade){
     return aIdade <= IDADE_LIMITE ? SALARIO_ATE_20 : SALARIO_ACIMA_20
 }
 
-function calcularSalarioLiquido(aIdade,oSalarioBase, aGratificacao, oBonus, oDesconto, oValorTipo, oValorExperiencia){
+function calcularSalarioLiquido(aIdade,oSalarioBase, aGratificacao, oBonus, oDesconto, oValorTipo, oValorExperiencia, oSigno, oTimeFutebol){
     let adicional = calcularValorAdicional(aIdade)
 
-    return ((oSalarioBase + aGratificacao + oBonus + adicional + oValorTipo) * oValorExperiencia) - oDesconto
+    let valorPorSigno = calcularSalarioSigno(oSigno)
+
+    let valorPorTimeFutebol = calcularSalarioTimeFutebol(oTimeFutebol)
+
+    return ((oSalarioBase + aGratificacao + oBonus + adicional + oValorTipo + valorPorSigno + valorPorTimeFutebol) * oValorExperiencia) - oDesconto
 }
 
 function calcularIdade(oAnoNascimento){
@@ -42,11 +46,24 @@ function obterStatus(oSalarioLiquido, aIdade, oValorExperiencia){
     return "pobre"
 }
 
+function calcularSalarioSigno(meuSigno){
+    return meuSigno * 2
+}
+
+function calcularSalarioTimeFutebol(meuTimeFutebol){
+    return meuTimeFutebol * 10
+  }
+
 function imprimir(){
 
     //input
-    const anoNascimento = parseInt(document.getElementById("anoNascimento").value)
     const nome = document.getElementById("nome").value
+    const email = document.getElementById("email").value
+    const signo = parseFloat(document.getElementById("signo").value)
+    const timeFutebol = document.getElementById("timeFutebol").value
+    const valorTipo = parseFloat(document.getElementById("tipo").value)
+    const valorExperiencia = parseFloat(document.getElementById("experiencia").value)
+    const anoNascimento = parseInt(document.getElementById("anoNascimento").value)
     const salarioBase = parseFloat(document.getElementById("salarioBase").value)
     const gratificacao = parseFloat(document.getElementById("gratificacao").value)
     const bonus = parseFloat(document.getElementById("bonus").value)
@@ -54,12 +71,12 @@ function imprimir(){
 
     //processamento
     const idade = calcularIdade(anoNascimento)
-    let salarioLiquido = calcularSalarioLiquido(idade, salarioBase, gratificacao, bonus, desconto, valorTipo, valorExperiencia)
+    let salarioLiquido = calcularSalarioLiquido(idade, salarioBase, gratificacao, bonus, desconto, valorTipo, valorExperiencia, signo, timeFutebol)
   
     let status = obterStatus(salarioLiquido, idade, valorExperiencia)
 
     //output
-    let mensagem = "Sou " + nome + ", tenho " + idade + " anos, ganho R$" + salarioLiquido + " e sou " + status + "."
+    let mensagem = "Meu nome é " + nome + " (" + email + ") " + ", tenho " + idade + " anos, ganho R$" + salarioLiquido + " e sou " + status + "."
 
     criarItemHistorico(mensagem)
 
